@@ -1,13 +1,23 @@
 {
   "name": "learn-dsa",
   "version": "1.0.0",
-  "description": "Curated DSA Problem Solutions in TypeScript with In-Depth Line-by-Line Explanations",
+  "description": "Curated DSA Problem Solutions in TypeScript and Python with In-Depth Line-by-Line Explanations",
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test:all": "tsx --test src/**/*.test.ts"
+    "test:all": "tsx --test src/**/*.test.ts",
+    "verify:ts": "tsx src/verify_all.ts",
+    "verify:py": "python python/verify_all.py",
+    "verify:all": "tsx src/verify_all.ts && python python/verify_all.py"
   },
-  "keywords": ["dsa", "leetcode", "typescript", "algorithms", "data-structures"],
+  "keywords": [
+    "dsa",
+    "leetcode",
+    "typescript",
+    "python",
+    "algorithms",
+    "data-structures"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {

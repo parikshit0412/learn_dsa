@@ -56,7 +56,30 @@ import { climbStairs } from './09_intervals_and_dp/03_climbing_stairs.js';
 import { rob } from './09_intervals_and_dp/04_house_robber.js';
 import { coinChange } from './09_intervals_and_dp/05_coin_change.js';
 
-console.log('🧪 Starting Verification of All 36 DSA Solutions...\n');
+// 10. Tries (AI Era)
+import { Trie } from './10_tries/01_implement_trie.js';
+import { WordDictionary } from './10_tries/02_design_add_and_search_words.js';
+
+// 11. Heaps & Priority Queues (AI Era)
+import { findKthLargest } from './11_heaps_and_priority_queues/01_kth_largest_element.js';
+import { MedianFinder } from './11_heaps_and_priority_queues/02_find_median_from_data_stream.js';
+
+// 12. Union-Find / DSU (AI Era)
+import { findCircleNum } from './12_union_find/01_number_of_provinces.js';
+import { accountsMerge } from './12_union_find/02_accounts_merge.js';
+
+// 13. Backtracking (AI Era)
+import { subsets } from './13_backtracking/01_subsets.js';
+import { exist } from './13_backtracking/02_word_search.js';
+
+// 14. 2D DP & Alignment (AI Era)
+import { longestCommonSubsequence } from './14_2d_dp_and_alignment/01_longest_common_subsequence.js';
+import { minDistance } from './14_2d_dp_and_alignment/02_edit_distance.js';
+
+// 15. AI System DSA (AI Era)
+import { TokenBucketRateLimiter } from './15_ai_system_dsa/01_token_bucket_rate_limiter.js';
+
+console.log('🧪 Starting Verification of All 47 DSA Solutions (36 Foundational + 11 AI-Era)...\n');
 
 // 1. Arrays & Hashing
 assert.deepStrictEqual(twoSum([2, 7, 11, 15], 9), [0, 1]);
@@ -236,4 +259,89 @@ assert.strictEqual(coinChange([2], 3), -1);
 assert.strictEqual(coinChange([1], 0), 0);
 console.log('✅ #322 Coin Change passed');
 
-console.log('\n🎉 ALL 36 PROBLEM SOLUTIONS VERIFIED AND PASSED SUCCESSFULLY!');
+// 10. Tries
+const trie = new Trie();
+trie.insert("apple");
+assert.strictEqual(trie.search("apple"), true);
+assert.strictEqual(trie.search("app"), false);
+assert.strictEqual(trie.startsWith("app"), true);
+trie.insert("app");
+assert.strictEqual(trie.search("app"), true);
+console.log('✅ #208 Implement Trie passed');
+
+const wd = new WordDictionary();
+wd.addWord("bad");
+wd.addWord("dad");
+wd.addWord("mad");
+assert.strictEqual(wd.search("pad"), false);
+assert.strictEqual(wd.search("bad"), true);
+assert.strictEqual(wd.search(".ad"), true);
+assert.strictEqual(wd.search("b.."), true);
+console.log('✅ #211 Design Add and Search Words passed');
+
+// 11. Heaps & Priority Queues
+assert.strictEqual(findKthLargest([3, 2, 1, 5, 6, 4], 2), 5);
+assert.strictEqual(findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4), 4);
+console.log('✅ #215 Kth Largest Element passed');
+
+const mf = new MedianFinder();
+mf.addNum(1);
+mf.addNum(2);
+assert.strictEqual(mf.findMedian(), 1.5);
+mf.addNum(3);
+assert.strictEqual(mf.findMedian(), 2.0);
+console.log('✅ #295 Find Median from Data Stream passed');
+
+// 12. Union-Find / DSU
+const provMatrix = [
+  [1, 1, 0],
+  [1, 1, 0],
+  [0, 0, 1]
+];
+assert.strictEqual(findCircleNum(provMatrix), 2);
+console.log('✅ #547 Number of Provinces passed');
+
+const accList = [
+  ["John", "johnsmith@mail.com", "john_newyork@mail.com"],
+  ["John", "johnsmith@mail.com", "john00@mail.com"],
+  ["Mary", "mary@mail.com"],
+  ["John", "johnnybravo@mail.com"]
+];
+const mergedAcc = accountsMerge(accList);
+assert.strictEqual(mergedAcc.length, 3);
+console.log('✅ #721 Accounts Merge passed');
+
+// 13. Backtracking
+const subRes = subsets([1, 2, 3]);
+assert.strictEqual(subRes.length, 8);
+console.log('✅ #78 Subsets passed');
+
+const wsBoard = [
+  ["A","B","C","E"],
+  ["S","F","C","S"],
+  ["A","D","E","E"]
+];
+assert.strictEqual(exist(wsBoard, "ABCCED"), true);
+assert.strictEqual(exist(wsBoard, "SEE"), true);
+assert.strictEqual(exist(wsBoard, "ABCB"), false);
+console.log('✅ #79 Word Search passed');
+
+// 14. 2D DP & Alignment
+assert.strictEqual(longestCommonSubsequence("abcde", "ace"), 3);
+assert.strictEqual(longestCommonSubsequence("abc", "def"), 0);
+console.log('✅ #1143 Longest Common Subsequence passed');
+
+assert.strictEqual(minDistance("horse", "ros"), 3);
+assert.strictEqual(minDistance("intention", "execution"), 5);
+console.log('✅ #72 Edit Distance passed');
+
+// 15. AI System DSA
+const t0 = 1000;
+const limiter = new TokenBucketRateLimiter(5, 2, t0);
+assert.strictEqual(limiter.allowRequest(3, t0), true);
+assert.strictEqual(limiter.allowRequest(2, t0), true);
+assert.strictEqual(limiter.allowRequest(1, t0), false);
+assert.strictEqual(limiter.allowRequest(2, t0 + 1000), true);
+console.log('✅ Token Bucket Rate Limiter (AI System DSA) passed');
+
+console.log('\n🎉 ALL 47 PROBLEM SOLUTIONS (36 FOUNDATIONAL + 11 AI-ERA) VERIFIED AND PASSED SUCCESSFULLY!');
